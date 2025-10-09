@@ -1,0 +1,228 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #e9f0ff, #f9fbff);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== TÍTULOS ====== */
+h1 {
+  text-align: center;
+  color: #0066cc;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 40px;
+  color: #004d99;
+}
+
+/* ====== FORMULÁRIO ====== */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+form input,
+form select,
+form button {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  flex: 1 1 45%;
+}
+
+form button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background: #0056b3;
+}
+
+/* ====== TABELA ====== */
+.tabela-container {
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th {
+  background: #007bff;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background: #f4f9ff;
+  transition: 0.2s;
+}
+
+/* ====== RESUMO ====== */
+.resumo {
+  margin-top: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.resumo p {
+  margin: 5px 0;
+}
+
+/* ====== FILTRO ====== */
+.filtro-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.filtro-container input[type="month"] {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.filtro-container button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.filtro-container button:hover {
+  background: #0056b3;
+}
+
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  form input,
+  form select,
+  form button {
+    flex: 1 1 100%;
+  }
+
+  .filtro-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tabela-container {
+    max-height: 250px;
+  }
+}
+
+.login-container {
+  background: #f3f3f3;
+  padding: 30px;
+  border-radius: 15px;
+  width: 350px;
+  margin: 120px auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-container h1 {
+  color: #2b7a78;
+  margin-bottom: 10px;
+}
+
+.login-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login-container input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.login-container button {
+  width: 95%;
+  background: #2b7a78;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-container button:hover {
+  background: #226d64;
+}
+
+.mensagem {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.modo-troca span {
+  color: #2b7a78;
+  cursor: pointer;
+  font-weight: bold;
+}
+.rodape {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.rodape a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.rodape a:hover {
+  text-decoration: underline;
+}
