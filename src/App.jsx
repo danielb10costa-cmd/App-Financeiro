@@ -41,6 +41,28 @@ export default function App() {
     setUsuario(null);
   };
 
+  // ❌ Cancelar assinatura
+  const cancelarAssinatura = async () => {
+    const confirmar = window.confirm("Tem certeza que deseja cancelar sua assinatura?");
+    if (!confirmar) return;
+
+    try {
+      const { error } = await supabase
+        .from("usuarios_assinaturas")
+        .delete()
+        .eq("usuario_id", usuario.id);
+
+      if (error) throw error;
+
+      await supabase.auth.signOut();
+      setUsuario(null);
+      alert("Assinatura cancelada com sucesso.");
+    } catch (err) {
+      console.error("Erro ao cancelar assinatura:", err.message);
+      alert("Erro ao cancelar assinatura. Tente novamente.");
+    }
+  };
+
   // 🔍 Buscar lançamentos do usuário
   const buscarLancamentos = async () => {
     if (!usuario) return;
@@ -98,13 +120,12 @@ export default function App() {
     doc.save(`Extrato_${mesFiltro || "geral"}.pdf`);
   };
 
- // 🪙 Redireciona para o checkout do Mercado Pago
-const iniciarAssinatura = () => {
-  const linkMercadoPago = "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=6ce80fe3728942f2a9bfec61586c4b89";
-  window.open(linkMercadoPago, "_blank"); // abre em nova aba
-};
-
-
+  // 🪙 Redireciona para o checkout do Mercado Pago
+  const iniciarAssinatura = () => {
+    const linkMercadoPago =
+      "https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=6ce80fe3728942f2a9bfec61586c4b89";
+    window.open(linkMercadoPago, "_blank"); // abre em nova aba
+  };
 
   // 🔑 Se não estiver logado, mostra tela de login
   if (!usuario) return <Login onLogin={setUsuario} />;
@@ -192,10 +213,15 @@ const iniciarAssinatura = () => {
           </div>
         </>
       )}
+
+      {/* Rodapé com botão de cancelar assinatura */}
       <footer className="rodape">
-  <p>📞 Suporte: <a href="mailto:danielb10costa@gmail.com">danielb10costa@gmail.com</a></p>
-  <p>© {new Date().getFullYear()} - App Finanças. Todos os direitos reservados.</p>
-</footer>
+        <p>📞 Suporte: <a href="mailto:danielb10costa@gmail.com">danielb10costa@gmail.com</a></p>
+        <button onClick={cancelarAssinatura} className="botao-cancelar">
+          ❌ Cancelar Assinatura
+        </button>
+        <p>© {new Date().getFullYear()} - App Finanças. Todos os direitos reservados.</p>
+      </footer>
     </div>
   );
 }
