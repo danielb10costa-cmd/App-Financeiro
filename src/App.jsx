@@ -32,7 +32,7 @@ export default function App() {
       setCarregando(true);
       setErro("");
       const { data, error } = await supabase
-        .from("lancamentos")
+        .schema("public").from("lancamentos")
         .select("id, descricao, valor, tipo, data")
         .order("data", { ascending: false })
         .order("id", { ascending: false });
@@ -101,7 +101,7 @@ export default function App() {
     try {
       setCarregando(true);
       setErro("");
-      const { error } = await supabase.from("lancamentos").delete().eq("id", id);
+      const { error } = await supabase.schema("public").from("lancamentos").delete().eq("id", id);
       if (error) throw error;
       setLancamentos((prev) => prev.filter((l) => l.id !== id));
       setSelecionados((prev) => {
@@ -122,7 +122,7 @@ export default function App() {
       setCarregando(true);
       setErro("");
       const ids = Array.from(selecionados);
-      const { error } = await supabase.from("lancamentos").delete().in("id", ids);
+      const { error } = await supabase.schema("public").from("lancamentos").delete().in("id", ids);
       if (error) throw error;
       setLancamentos((prev) => prev.filter((l) => !selecionados.has(l.id)));
       setSelecionados(new Set());
@@ -161,7 +161,7 @@ export default function App() {
         data: edit.data, // YYYY-MM-DD
       };
 
-      const { error } = await supabase.from("lancamentos").update(payload).eq("id", id);
+      const { error } = await supabase.schema("public").from("lancamentos").update(payload).eq("id", id);
       if (error) throw error;
 
       setLancamentos((prev) =>
